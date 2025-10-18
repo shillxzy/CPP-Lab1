@@ -35,3 +35,7 @@ compileJava {
 compileTestJava {
     options.encoding = 'UTF-8'
 }
+
+quarkus {
+    setFinalName("cross-lab1")
+}
