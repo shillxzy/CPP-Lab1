@@ -8,6 +8,4 @@ pluginManagement {
         id "${quarkusPluginId}" version "${quarkusPluginVersion}"
     }
 }
-rootProject.name = 'cross-lab1'
-include 'user-service', 'artist-service', 'song-service', 'playlist-service'
-
+rootProject.name='artist-service'
