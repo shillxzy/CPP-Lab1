@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example;
 
 import io.smallrye.config.WithDefault;
 import jakarta.ws.rs.GET;

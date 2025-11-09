@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example;
 
 public class Artist {
     private int id;

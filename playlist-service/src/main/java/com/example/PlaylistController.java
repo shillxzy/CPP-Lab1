@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
