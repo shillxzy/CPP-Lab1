@@ -9,5 +9,5 @@ pluginManagement {
     }
 }
 rootProject.name = 'cross-lab1'
-include 'user-service', 'artist-service', 'song-service', 'playlist-service'
+include 'user-service', 'artist-service', 'song-service', 'playlist-service', 'frontend-service'
 

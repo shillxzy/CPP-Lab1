@@ -14,7 +14,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-rest'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
-   // implementation("io.quarkus:quarkus-oidc")
+    implementation("io.quarkus:quarkus-oidc")
     implementation 'io.quarkus:quarkus-grpc'
     implementation 'io.quarkus:quarkus-rest-jackson'
 
