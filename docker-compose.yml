@@ -4,25 +4,51 @@ services:
     build: ./user-service
     ports:
       - "8081:8081"
+    depends_on:
+      - keycloak
 
   artist-service:
     build: ./artist-service
     ports:
       - "8084:8084"
+    depends_on:
+      - keycloak
 
 
   playlist-service:
     build: ./playlist-service
     ports:
       - "8083:8083"
+    depends_on:
+      - keycloak
 
   song-service:
     build: ./song-service
     ports:
       - "8082:8082"
+    depends_on:
+      - keycloak
+
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.0
+    ports:
+      - "8180:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME_STRICT: "false"
+    command: [ "start-dev" ]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/realms/master" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
 
   frontend-service:
     build: ./frontend-service
-    container_name: ui
     ports:
-      - "3000:3000"
+      - "8080:8080"
+    depends_on:
+      keycloak:
+        condition: service_healthy
