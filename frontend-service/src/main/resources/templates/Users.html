@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Users — Musicfy</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0f2d1; }
+        h1 { color: #a0ff8f; text-align: center; margin-top: 20px; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #a0ff8f; padding: 10px; text-align: left; }
+        th { background-color: #1f1f1f; }
+        tr:nth-child(even) { background-color: #222; }
+    </style>
+</head>
+<body>
+<h1>Список користувачів</h1>
+
+{#if users.size > 0}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        {#for u in users}
+            <tr>
+                <td>{u.id}</td>
+                <td>{u.username}</td>
+                <td>{u.email}</td>
+            </tr>
+        {/for}
+    </table>
+{#else}
+    <p style="text-align:center; margin-top:20px;">Користувачів немає</p>
+{/if}
+
+</body>
+</html>
