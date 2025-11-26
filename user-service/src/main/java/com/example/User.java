@@ -1,15 +1,12 @@
 package com.example;
 
-public class User {
-    public int id;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Entity;
+
+@Entity
+public class User extends PanacheEntity
+{
     public String username;
     public String email;
-
-    public User() {}
-
-    public User(int id, String username, String email) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-    }
 }
+

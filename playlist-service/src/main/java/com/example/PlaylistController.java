@@ -1,26 +1,42 @@
 package com.example;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/playlists")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class PlaylistController {
 
-    @Inject
-    PlaylistRepository playlistRepository;
-
     @GET
-    @Path("/{userId}")
-    public List<Playlist> getPlaylistsByUser(@PathParam("userId") int userId) {
-        return playlistRepository.getAllPlaylists().stream()
-                .filter(p -> p.getUserId() == userId)
-                .collect(Collectors.toList());
+    public List<Playlist> getAll() {
+        return Playlist.listAll();
+    }
+
+    @POST
+    @Transactional
+    public Playlist create(Playlist playlist) {
+        playlist.persist();
+        return playlist;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Playlist update(@PathParam("id") Long id, Playlist data) {
+        Playlist p = Playlist.findById(id);
+        if (p == null) throw new NotFoundException();
+        p.userId = data.userId;
+        p.name = data.name;
+        return p;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public void delete(@PathParam("id") Long id) {
+        Playlist.deleteById(id);
     }
 }

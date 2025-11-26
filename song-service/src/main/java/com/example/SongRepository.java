@@ -1,14 +1,15 @@
 package com.example;
 
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+
 import java.util.List;
 
 @ApplicationScoped
-public class SongRepository {
-    public List<Song> getAllSongs() {
-        return List.of(
-                new Song(1, "Song A", "Artist X", "Pop"),
-                new Song(2, "Song B", "Artist Y", "Rock")
-        );
+public class SongRepository implements PanacheRepository<Song> {
+
+    // можна додати кастомні методи
+    public List<Song> findByGenre(String genre){
+        return list("genre", genre);
     }
 }
