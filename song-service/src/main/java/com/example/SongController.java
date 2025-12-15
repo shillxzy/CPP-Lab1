@@ -19,12 +19,24 @@ public class SongController {
         return repo.listAll();
     }
 
+    @GET
+    @Path("/genre/{genre}")
+    public List<Song> getByGenre(@PathParam("genre") String genre) {
+        return repo.findByGenre(genre);
+    }
+
+    @Inject
+    SongEventProducer producer;
+
     @POST
     @Transactional
-    public Song create(Song song) {
+    public Song create(Song song)
+    {
         repo.persist(song);
+        producer.sendSongCreated(song);
         return song;
     }
+
 
     @PUT
     @Path("/{id}")
