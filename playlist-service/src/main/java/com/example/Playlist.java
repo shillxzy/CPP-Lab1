@@ -19,4 +19,9 @@ public class Playlist extends PanacheEntity {
     )
     @Column(name = "song_id")
     public Set<Long> songIds = new HashSet<>();
+
+    public void addSong(Long songId) {
+        songIds.add(songId);
+        this.persist();
+    }
 }
